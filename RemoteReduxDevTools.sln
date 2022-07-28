@@ -1,0 +1,52 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32721.290
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteReduxDevTools.Remote.Server", "src\RemoteReduxDevTools.Remote\Server\RemoteReduxDevTools.Remote.Server.csproj", "{C5AAB4E3-66D5-40BC-B80D-0AC8A5927386}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteReduxDevTools.Remote.Client", "src\RemoteReduxDevTools.Remote\Client\RemoteReduxDevTools.Remote.Client.csproj", "{5D20C569-CBEC-4AD3-89E0-B77E580379D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteReduxDevTools.Remote.Shared", "src\RemoteReduxDevTools.Remote\Shared\RemoteReduxDevTools.Remote.Shared.csproj", "{504585A5-E66D-4897-A43C-86F71BF388AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Solution Items", "!Solution Items", "{D3C17861-F73A-4058-958D-A25C1C465B25}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Remote", "Remote", "{1D5B3A90-49FF-490F-80DD-722799DE8B57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5AAB4E3-66D5-40BC-B80D-0AC8A5927386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5AAB4E3-66D5-40BC-B80D-0AC8A5927386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5AAB4E3-66D5-40BC-B80D-0AC8A5927386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5AAB4E3-66D5-40BC-B80D-0AC8A5927386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D20C569-CBEC-4AD3-89E0-B77E580379D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D20C569-CBEC-4AD3-89E0-B77E580379D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D20C569-CBEC-4AD3-89E0-B77E580379D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D20C569-CBEC-4AD3-89E0-B77E580379D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{504585A5-E66D-4897-A43C-86F71BF388AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{504585A5-E66D-4897-A43C-86F71BF388AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{504585A5-E66D-4897-A43C-86F71BF388AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{504585A5-E66D-4897-A43C-86F71BF388AC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C5AAB4E3-66D5-40BC-B80D-0AC8A5927386} = {1D5B3A90-49FF-490F-80DD-722799DE8B57}
+		{5D20C569-CBEC-4AD3-89E0-B77E580379D1} = {1D5B3A90-49FF-490F-80DD-722799DE8B57}
+		{504585A5-E66D-4897-A43C-86F71BF388AC} = {1D5B3A90-49FF-490F-80DD-722799DE8B57}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {97BB46B9-3591-4C83-9CA6-C12EE7B0DB1F}
+	EndGlobalSection
+EndGlobal
