@@ -9,10 +9,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.7" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.7" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.7" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\RemoteReduxDevTools.Remote.Shared.csproj" />
+    <ProjectReference Include="..\..\RemoteReduxDevTools.Shared\RemoteReduxDevTools.Shared.csproj" />
   </ItemGroup>
 
 </Project>

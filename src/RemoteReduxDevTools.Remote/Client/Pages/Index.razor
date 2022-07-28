@@ -1,9 +1,116 @@
-﻿@page "/"
+@page "/"
+@using Microsoft.AspNetCore.SignalR.Client
+@using RemoteReduxDevTools.Remote.Client.Interop
+@using System.Text.Json
+@using RemoteReduxDevTools.Shared
+@using RemoteReduxDevTools.Shared.CallbackObjects
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+@implements IAsyncDisposable
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<h1>Remote Redux Dev Tools</h1>
+@if (!IsConnected)
+{
+    <p>No SignalR connection!</p>
+}
+else
+{
+    <p>SignalR connection OK!</p>
 
-Welcome to your new app.
+    @if (sessionId == null)
+    {
+        <button @onclick="StartNewSession">Start new session</button>
+    }
+    else
+    {
+        <p>Connect your app to <code>@(NavigationManager.BaseUri)clientapphub</code> with SessionId <code>@sessionId</code>.</p>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+        <ul id="messagesList">
+            @foreach (var message in messages)
+            {
+                <li>@message</li>
+            }
+        </ul>
+    }
+}
+
+@code {
+    private string? sessionId = null;
+    private HubConnection? hubConnection;
+    private List<string> messages = new List<string>();
+    private ReduxDevToolsInterop? reduxDevToolsInterop;
+
+    protected override async Task OnInitializedAsync()
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/devtoolshub"))
+            .Build();
+
+        hubConnection.On<RemoteReduxDevToolsOptions>("ConfigureAsync", async (options) =>
+        {
+            messages.Clear();
+            messages.Add($"New session started with options: {JsonSerializer.Serialize(options)}");
+            if (reduxDevToolsInterop is IDisposable d)
+            {
+                await reduxDevToolsInterop.TerminateAsync();
+                d.Dispose();
+            }
+            reduxDevToolsInterop = new ReduxDevToolsInterop(JSRuntime);
+            reduxDevToolsInterop.OnJumpToState = (JumpToStateCallback cb) => hubConnection.SendAsync("OnJumpToState", cb);
+            reduxDevToolsInterop.OnCommit = () => hubConnection.SendAsync("OnCommit");
+            await reduxDevToolsInterop.ConfigureAsync(options);
+
+            StateHasChanged();
+        });
+
+        hubConnection.On<string>("InitializeAsync", async (state) =>
+        {
+            messages.Add($"InitializeAsync with state: {state}");
+            if (reduxDevToolsInterop is null)
+            {
+                throw new InvalidOperationException("ReduxDevToolsInterop not configured");
+            }
+            await reduxDevToolsInterop.InitializeAsync(state);
+            StateHasChanged();
+        });
+
+        hubConnection.On<string, string, string?>("DispatchAsync", async (action, state, stackTrace) =>
+        {
+            messages.Add($"DispatchAsync with action: {action}, state: {state}, stack trace: {stackTrace ?? "-"}");
+            if (reduxDevToolsInterop is null)
+            {
+                throw new InvalidOperationException("ReduxDevToolsInterop not configured");
+            }
+            await reduxDevToolsInterop.DispatchAsync(action, state, stackTrace);
+            StateHasChanged();
+        });
+
+        hubConnection.Closed += (e) =>
+        {
+            StateHasChanged();
+            return Task.CompletedTask;
+        };
+
+        await hubConnection.StartAsync();
+    }
+
+    public bool IsConnected =>
+        hubConnection?.State == HubConnectionState.Connected;
+
+    public async Task StartNewSession(){
+        if (hubConnection == null) return;
+        var id = Guid.NewGuid().ToString();
+        await hubConnection.InvokeAsync("NewSession", id);
+        sessionId = id;
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+}

@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\RemoteReduxDevTools.Shared\RemoteReduxDevTools.Shared.csproj" />
     <ProjectReference Include="..\Client\RemoteReduxDevTools.Remote.Client.csproj" />
-    <ProjectReference Include="..\Shared\RemoteReduxDevTools.Remote.Shared.csproj" />
   </ItemGroup>
 
 

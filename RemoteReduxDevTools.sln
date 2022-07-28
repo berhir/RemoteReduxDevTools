@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteReduxDevTools.Remote.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteReduxDevTools.Remote.Client", "src\RemoteReduxDevTools.Remote\Client\RemoteReduxDevTools.Remote.Client.csproj", "{5D20C569-CBEC-4AD3-89E0-B77E580379D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteReduxDevTools.Remote.Shared", "src\RemoteReduxDevTools.Remote\Shared\RemoteReduxDevTools.Remote.Shared.csproj", "{504585A5-E66D-4897-A43C-86F71BF388AC}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Solution Items", "!Solution Items", "{D3C17861-F73A-4058-958D-A25C1C465B25}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -18,6 +16,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "!Solution Items", "!Solutio
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Remote", "Remote", "{1D5B3A90-49FF-490F-80DD-722799DE8B57}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{85F95A41-8C93-4F20-8826-758A6DFE730C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FluxorConsoleApp", "samples\FluxorConsoleApp\FluxorConsoleApp.csproj", "{4E4FD366-0EBB-4435-BBC3-A9C3198126BC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemoteReduxDevTools.Client", "src\RemoteReduxDevTools.Client\RemoteReduxDevTools.Client.csproj", "{39CEB266-A689-4D19-AF85-B8DA248945DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoteReduxDevTools.Shared", "src\RemoteReduxDevTools.Shared\RemoteReduxDevTools.Shared.csproj", "{03D04F6B-3DBC-429D-A6A3-4B314C64905B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,10 +39,18 @@ Global
 		{5D20C569-CBEC-4AD3-89E0-B77E580379D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D20C569-CBEC-4AD3-89E0-B77E580379D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D20C569-CBEC-4AD3-89E0-B77E580379D1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{504585A5-E66D-4897-A43C-86F71BF388AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{504585A5-E66D-4897-A43C-86F71BF388AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{504585A5-E66D-4897-A43C-86F71BF388AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{504585A5-E66D-4897-A43C-86F71BF388AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E4FD366-0EBB-4435-BBC3-A9C3198126BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E4FD366-0EBB-4435-BBC3-A9C3198126BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E4FD366-0EBB-4435-BBC3-A9C3198126BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E4FD366-0EBB-4435-BBC3-A9C3198126BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39CEB266-A689-4D19-AF85-B8DA248945DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39CEB266-A689-4D19-AF85-B8DA248945DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39CEB266-A689-4D19-AF85-B8DA248945DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39CEB266-A689-4D19-AF85-B8DA248945DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D04F6B-3DBC-429D-A6A3-4B314C64905B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D04F6B-3DBC-429D-A6A3-4B314C64905B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D04F6B-3DBC-429D-A6A3-4B314C64905B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D04F6B-3DBC-429D-A6A3-4B314C64905B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,7 +58,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{C5AAB4E3-66D5-40BC-B80D-0AC8A5927386} = {1D5B3A90-49FF-490F-80DD-722799DE8B57}
 		{5D20C569-CBEC-4AD3-89E0-B77E580379D1} = {1D5B3A90-49FF-490F-80DD-722799DE8B57}
-		{504585A5-E66D-4897-A43C-86F71BF388AC} = {1D5B3A90-49FF-490F-80DD-722799DE8B57}
+		{4E4FD366-0EBB-4435-BBC3-A9C3198126BC} = {85F95A41-8C93-4F20-8826-758A6DFE730C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {97BB46B9-3591-4C83-9CA6-C12EE7B0DB1F}
