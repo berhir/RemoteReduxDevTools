@@ -14,8 +14,8 @@ namespace RemoteReduxDevTools.Client;
 /// </summary>
 internal sealed class RemoteReduxDevToolsMiddleware : Middleware
 {
+    private readonly object _syncRoot = new();
     private Task _tailTask = Task.CompletedTask;
-    private SpinLock _spinLock = new SpinLock();
     private int _sequenceNumberOfCurrentState = 0;
     private int _sequenceNumberOfLatestState = 0;
     private readonly RemoteReduxDevToolsMiddlewareOptions _options;
@@ -91,12 +91,12 @@ internal sealed class RemoteReduxDevToolsMiddleware : Middleware
                 stackTrace = _jsonSerialization.Serialize(stackTrace, typeof(string));
             }
         }
-        _spinLock.ExecuteLocked(() =>
+        lock (_syncRoot)
         {
             var state = GetStateAsJson();
             _tailTask = _tailTask
                 .ContinueWith(_ => _hubConnection.InvokeAsync("DispatchAsync", _jsonSerialization.Serialize(new ActionInfo(action), typeof(ActionInfo)), state, stackTrace)).Unwrap();
-        });
+        }
 
         // As actions can only be executed if not in a historical state (yes, "a" historical, pronounce your H!)
         // ensure the latest is incremented, and the current = latest
